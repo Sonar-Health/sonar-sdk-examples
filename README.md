@@ -39,7 +39,7 @@ The phone must reach that URL, so run it on the same network.
 
 ## Run the React Native app
 
-Coming soon: `@sonarhealth/react-native-sdk` is not on npm yet, so this app does not install today.
+iOS only for now: `@sonarhealth/react-native-sdk` does not support Android yet.
 
 ```bash
 cd react-native
