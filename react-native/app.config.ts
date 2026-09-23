@@ -1,13 +1,14 @@
 import type { ExpoConfig } from "expo/config";
 
 const config: ExpoConfig = {
-  name: "Sonar RN Example",
-  slug: "sonar-react-native-example",
+  name: "Sonar RN Demo",
+  slug: "sonar-react-native-demo",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
+  userInterfaceStyle: "dark",
   ios: {
-    bundleIdentifier: "com.example.sonarrn",
+    bundleIdentifier: process.env.IOS_BUNDLE_ID ?? "com.example.sonarrn",
     infoPlist: {
       // The demo backend runs on a computer on the local network, over plain HTTP.
       NSAppTransportSecurity: { NSAllowsLocalNetworking: true },
@@ -20,7 +21,7 @@ const config: ExpoConfig = {
       "@sonarhealth/react-native-sdk",
       {
         appId: process.env.SONAR_APP_ID,
-        healthShareUsageDescription: "Reads your health data to chart your steps.",
+        healthShareUsageDescription: "Reads your health data to chart your steps, heart and sleep.",
         privacyPolicyUrl: "https://example.com/privacy",
       },
     ],

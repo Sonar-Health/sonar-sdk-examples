@@ -1,0 +1,15 @@
+{
+  "originHash" : "c1221f156ea7fec297083e20dcea74282ecdb3d195e25c478a3d7057e977dc45",
+  "pins" : [
+    {
+      "identity" : "sonar-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Sonar-Health/sonar-ios-sdk.git",
+      "state" : {
+        "revision" : "077daa18bd0ddd334b2a93af2cc15aad4737f622",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -13,7 +13,7 @@ app ── sign-in ──► your backend ── API key ──► Sonar API
 | --- | --- |
 | `backend/` | The customer backend at demo size (Bun, no dependencies): mints SDK client tokens and passes health reads through for its one user |
 | `ios/` | SwiftUI app: signs in to the backend, connects Apple Health, charts what the backend reads |
-| `react-native/` | Expo app: the same flow in React Native |
+| `react-native/` | Expo app: the same app in React Native |
 
 ## What you need
 
@@ -43,11 +43,12 @@ Coming soon: `@sonarhealth/react-native-sdk` is not on npm yet, so this app does
 
 ```bash
 cd react-native
-cp .env.example .env   # the SDK app ID, backend URL and access code
+cp .env.example .env   # the SDK app ID and the bundle ID it is registered for
 npm install
 npx expo run:ios --device
 ```
 
-Set `ios.bundleIdentifier` in `app.config.ts` to the bundle ID Sonar registered.
+Then sign in with the backend URL and access code, as in the iOS app. The iOS SDK ships inside the
+npm package, so there is no separate pod to add.
 
 Docs: https://docs.sonarhealth.co/mobile-sdk/

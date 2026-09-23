@@ -1,5 +1,5 @@
 {
-  "name": "sonar-react-native-example",
+  "name": "sonar-react-native-demo",
   "version": "1.0.0",
   "main": "index.ts",
   "private": true,
@@ -11,9 +11,12 @@
   "dependencies": {
     "@sonarhealth/react-native-sdk": "~0.1.0",
     "expo": "~57.0.24",
+    "expo-keep-awake": "~57.0.0",
+    "expo-secure-store": "~57.0.4",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
-    "react-native": "0.86.3"
+    "react-native": "0.86.3",
+    "react-native-svg": "15.15.4"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
