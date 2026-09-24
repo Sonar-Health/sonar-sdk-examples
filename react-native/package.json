@@ -9,7 +9,7 @@
     "android": "expo run:android"
   },
   "dependencies": {
-    "@sonarhealth/react-native-sdk": "~0.1.1",
+    "@sonarhealth/react-native-sdk": "~0.1.2",
     "expo": "~57.0.24",
     "expo-keep-awake": "~57.0.0",
     "expo-secure-store": "~57.0.4",

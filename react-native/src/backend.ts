@@ -1,7 +1,9 @@
 import { theme } from "./theme";
 
 /** The app's own sign-in: the demo backend in ../backend holds the Sonar API key, never the app. */
-export type Credentials = { backend: string; accessCode: string };
+export type SignIn = { backend: string; accessCode: string };
+/** A signed-in user: the backend, and the user's own ID there. */
+export type Credentials = SignIn & { userId: string };
 
 export type DailySeries = { dates: string[]; series: Record<string, (number | null)[]> };
 export type Scores = {
@@ -59,7 +61,7 @@ export const localDate = (daysAgo: number) => {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 };
 
-export const backendClient = ({ backend, accessCode }: Credentials) => {
+export const backendClient = ({ backend, accessCode }: SignIn) => {
   const request = async <T>(path: string, init: RequestInit = {}): Promise<T> => {
     const response = await fetch(`${backend.replace(/\/+$/, "")}/${path}`, {
       ...init,
@@ -76,7 +78,7 @@ export const backendClient = ({ backend, accessCode }: Credentials) => {
   };
 
   return {
-    config: () => request<{ app_id: string }>("config"),
+    config: () => request<{ app_id: string; user_id: string }>("config"),
     sdkToken: async (installationId: string) =>
       (
         await request<{ client_token: string }>("sdk-token", {

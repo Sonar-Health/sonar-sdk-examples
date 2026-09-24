@@ -3,7 +3,7 @@ import { activateKeepAwakeAsync, deactivateKeepAwake } from "expo-keep-awake";
 import * as SecureStore from "expo-secure-store";
 import { useSyncExternalStore } from "react";
 
-import { backendClient, type Credentials } from "./backend";
+import { backendClient, type Credentials, type SignIn } from "./backend";
 
 /**
  * Everything the app does with the Sonar SDK: authenticate at every launch, connect Apple Health, and
@@ -64,6 +64,7 @@ const perform = async (work: () => Promise<unknown>) => {
 
 const authenticate = (credentials: Credentials) =>
   Sonar.authenticate({
+    userId: credentials.userId,
     clientTokenProvider: ({ installationId }) => backendClient(credentials).sdkToken(installationId),
   });
 
@@ -76,16 +77,16 @@ export const account = {
       else void deactivateKeepAwake("sonar-import");
     });
     const saved = await SecureStore.getItemAsync(credentialsKey);
-    const credentials = saved ? (JSON.parse(saved) as Credentials) : null;
+    const parsed = saved ? (JSON.parse(saved) as Partial<Credentials>) : null;
+    const credentials = parsed?.userId ? (parsed as Credentials) : null;
     update({ credentials, loaded: true });
     if (credentials) await perform(() => authenticate(credentials));
   },
 
-  signIn: (credentials: Credentials) =>
+  signIn: (signIn: SignIn) =>
     perform(async () => {
-      await backendClient(credentials).config();
-      // Another user may have been signed in on this phone: their Sonar session ends first.
-      await Sonar.signOut();
+      const config = await backendClient(signIn).config();
+      const credentials: Credentials = { ...signIn, userId: config.user_id };
       await authenticate(credentials);
       await SecureStore.setItemAsync(credentialsKey, JSON.stringify(credentials));
       update({ credentials });
