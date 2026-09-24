@@ -7,9 +7,11 @@ struct Backend: Sendable, Equatable {
 
     struct Config: Decodable, Sendable {
         let appId: String
+        let userId: String
 
         enum CodingKeys: String, CodingKey {
             case appId = "app_id"
+            case userId = "user_id"
         }
     }
 

@@ -60,7 +60,8 @@ Bun.serve({
   hostname: "0.0.0.0",
   routes: {
     "/config": {
-      GET: signedIn(() => Response.json({ app_id: sonar.appId })),
+      // The demo's user system has no IDs of its own, so its one user is known by its Sonar ID.
+      GET: signedIn((sonarUserId) => Response.json({ app_id: sonar.appId, user_id: sonarUserId })),
     },
 
     // The SDK calls the app's token provider, the app calls this, and the client token goes back.

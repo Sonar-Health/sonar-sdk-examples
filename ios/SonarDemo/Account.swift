@@ -16,6 +16,7 @@ final class Account {
         var backend: URL
         var accessCode: String
         var appId: String
+        var userId: String
     }
 
     private(set) var credentials = Account.saved
@@ -41,7 +42,7 @@ final class Account {
         perform {
             let backend = Backend(url: url, accessCode: accessCode)
             let config = try await backend.config()
-            let next = Credentials(backend: url, accessCode: accessCode, appId: config.appId)
+            let next = Credentials(backend: url, accessCode: accessCode, appId: config.appId, userId: config.userId)
             // The SDK refuses another app while a user is signed in.
             _ = await Sonar.signOut()
             guard self.configure(next) else { return }
@@ -84,7 +85,7 @@ final class Account {
 
     private func authenticate(_ credentials: Credentials) async throws {
         let backend = Backend(url: credentials.backend, accessCode: credentials.accessCode)
-        _ = try await Sonar.authenticate { context in
+        _ = try await Sonar.authenticate(userId: credentials.userId) { context in
             try await backend.sdkToken(installationId: context.installationId)
         }
     }
