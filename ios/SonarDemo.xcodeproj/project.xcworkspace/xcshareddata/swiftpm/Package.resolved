@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Sonar-Health/sonar-ios-sdk.git",
       "state" : {
-        "revision" : "04c6244489f30ac2db76b171f14789a1fb441813",
-        "version" : "0.1.2"
+        "revision" : "2faf7e9dae1b705a73c115a3a4ae0f1d87e7a87e",
+        "version" : "0.1.7"
       }
     }
   ],
