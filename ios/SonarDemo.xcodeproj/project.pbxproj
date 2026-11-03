@@ -235,7 +235,7 @@
 			repositoryURL = "https://github.com/Sonar-Health/sonar-ios-sdk.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.2;
+				minimumVersion = 0.1.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
